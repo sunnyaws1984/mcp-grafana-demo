@@ -145,7 +145,7 @@ Get token <YOUR_TOKEN_HERE>
 docker build -t mcp-grafana .
 docker run -d -p 8000:8000 \
   -e GRAFANA_URL=http://host.docker.internal:30093 \
-  -e GRAFANA_SERVICE_ACCOUNT_TOKEN=glsa_vjpSWZ4TwoNx4Yq8XdGtHHgAjencKZ0f_092b94ed\
+  -e GRAFANA_SERVICE_ACCOUNT_TOKEN=<TOKEN>\
   mcp-grafana \
   -t streamable-http
 
