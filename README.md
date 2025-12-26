@@ -132,7 +132,7 @@ The `mcp-grafana` binary supports various command-line flags for configuration:
 You have several options to install `mcp-grafana`:
 
 1) git clone <REPO>
-2) sh -x observability.sh  
+2) sh -x scripts/observability.sh  
 3) kubectl get pods -n grafana -> Verify if all up and running
 4) Open Grafana with endpoint you see after step2.
 
@@ -145,7 +145,7 @@ Get token <YOUR_TOKEN_HERE>
 docker build -t mcp-grafana .
 docker run -d -p 8000:8000 \
   -e GRAFANA_URL=http://host.docker.internal:30093 \
-  -e GRAFANA_SERVICE_ACCOUNT_TOKEN=<YOUR_TOKEN_HERE>\
+  -e GRAFANA_SERVICE_ACCOUNT_TOKEN=glsa_vjpSWZ4TwoNx4Yq8XdGtHHgAjencKZ0f_092b94ed\
   mcp-grafana \
   -t streamable-http
 
@@ -160,4 +160,3 @@ UID: PBFA97CFB590B2093
 expr: sum(rate(container_cpu_usage_seconds_total{namespace="grafana", pod!=""}[2m])) by (pod) * 100
 endtime: now-10m
 startime: now
-* Play with *Search_dashboard tool too

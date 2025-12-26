@@ -2,7 +2,7 @@
   "title": "Kubernetes Pod-Level Dashboard (grafana namespace)",
   "uid": "a9X7LmQ2Vp",
   "schemaVersion": 36,
-  "version": 1,
+  "version": 2,
   "refresh": "30s",
   "panels": [
     {
@@ -37,7 +37,9 @@
       "id": 3,
       "datasource": "Prometheus",
       "targets": [
-        { "expr": "sum(container_memory_usage_bytes{namespace=\"grafana\"}) / 1024 / 1024" }
+        {
+          "expr": "sum(container_memory_usage_bytes{namespace=\"grafana\"}) / 1024 / 1024"
+        }
       ],
       "gridPos": { "x": 0, "y": 6, "w": 6, "h": 4 }
     },
@@ -60,44 +62,16 @@
       "id": 5,
       "datasource": "Prometheus",
       "targets": [
-        { "expr": "count(kube_pod_status_phase{namespace=\"grafana\", phase=\"Running\"} == 1)" }
+        {
+          "expr": "count(kube_pod_status_phase{namespace=\"grafana\", phase=\"Running\"} == 1)"
+        }
       ],
       "gridPos": { "x": 18, "y": 6, "w": 6, "h": 4 }
     },
     {
-      "type": "table",
-      "title": "Pod Status Overview",
-      "id": 6,
-      "datasource": "Prometheus",
-      "targets": [
-        { "expr": "kube_pod_status_phase{namespace=\"grafana\"}" }
-      ],
-      "gridPos": { "x": 0, "y": 10, "w": 12, "h": 8 }
-    },
-    {
-      "type": "stat",
-      "title": "Pods in CrashLoopBackOff (All Namespaces)",
-      "id": 7,
-      "datasource": "Prometheus",
-      "targets": [
-        { "expr": "count(kube_pod_container_status_waiting_reason{reason=\"CrashLoopBackOff\"})" }
-      ],
-      "gridPos": { "x": 12, "y": 10, "w": 6, "h": 4 }
-    },
-    {
-      "type": "table",
-      "title": "CrashLoopBackOff Pod Details",
-      "id": 8,
-      "datasource": "Prometheus",
-      "targets": [
-        { "expr": "kube_pod_container_status_waiting_reason{reason=\"CrashLoopBackOff\"}" }
-      ],
-      "gridPos": { "x": 18, "y": 10, "w": 12, "h": 8 }
-    },
-    {
       "type": "graph",
       "title": "Pod Restarts",
-      "id": 9,
+      "id": 6,
       "datasource": "Prometheus",
       "targets": [
         {
@@ -105,24 +79,7 @@
           "legendFormat": "{{pod}}"
         }
       ],
-      "gridPos": { "x": 0, "y": 18, "w": 12, "h": 6 }
-    },
-    {
-      "type": "graph",
-      "title": "Deployment Desired vs Available Replicas",
-      "id": 10,
-      "datasource": "Prometheus",
-      "targets": [
-        {
-          "expr": "sum(kube_deployment_spec_replicas{namespace=\"grafana\"})",
-          "legendFormat": "Desired"
-        },
-        {
-          "expr": "sum(kube_deployment_status_replicas_available{namespace=\"grafana\"})",
-          "legendFormat": "Available"
-        }
-      ],
-      "gridPos": { "x": 12, "y": 18, "w": 12, "h": 6 }
+      "gridPos": { "x": 0, "y": 20, "w": 12, "h": 6 }
     }
   ]
 }

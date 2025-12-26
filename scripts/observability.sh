@@ -1,6 +1,5 @@
 #!/bin/bash
 
-set -e
 NAMESPACE=grafana
 
 echo "---------------------------------------------"
@@ -54,6 +53,8 @@ EOF
 echo "---------------------------------------------"
 echo "🔹 Installing Grafana"
 echo "---------------------------------------------"
+
+
 
 helm upgrade --install my-grafana-new grafana/grafana \
   -f grafana-values.yaml \
